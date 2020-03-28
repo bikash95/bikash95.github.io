@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Public Gallery || Upload Panel</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script> 
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+    <style>
+      html, body {
+      display: flex;
+      justify-content: center;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 15px;
+      }
+      form {
+      border: 5px solid #f1f1f1;
+      width: 80%;
+      }
+      input[type=text], input[type=password], input[type=URL] {
+      width: 100%;
+      padding: 16px 8px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      }
+      .btn{
+      background-color: #8ebf42;
+      color: white;
+      padding: 14px 0;
+      margin: 10px 0;
+      border: none;
+      cursor: pointer;
+      width: 250px;
+      }
+      button {
+      background-color: #8ebf42;
+      color: white;
+      padding: 14px 0;
+      margin: 10px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      }
+      h1 {
+      text-align:center;
+      fone-size:18;
+      }
+      button:hover {
+      opacity: 0.8;
+      }
+      .formcontainer {
+      text-align: left;
+      margin: 24px 50px 12px;
+      }
+      .container {
+      padding: 16px 0;
+      text-align:left;
+      }
+      span.pww{
+      float: left;
+      padding-top: 0;
+      padding-left: 15px;
+      }
+      span.psw {
+      float: right;
+      padding-top: 0;
+      padding-right: 15px;
+      }
+      /* Change styles for span on extra small screens */
+      @media screen and (max-width: 300px) {
+      span.psw {
+      display: block;
+      float: none;
+      }
+    </style>
+  </head>
+  <body onload="picidset()">
+    <form id="galleryadd">
+      <h1>Upload to our Gallery</h1>
+      <div class="formcontainer">
+      <hr>
+      <div class="container">
+        <label for="uid" style="display: block;"><strong>User ID</strong></label>
+        <input style="display: block;" type="text" id="uid" placeholder="Enter User ID" name="uid" required>
+
+        <label for="uname" style="display: block;"><strong>User Name</strong></label>
+        <input style="display: block;" type="text" id="uname" placeholder="Enter User Name" name="uname" required>
+
+
+        <label for="picid" style="display: block;"><strong>Image ID</strong></label>
+        <input style="display: block;" type="text" id="picid" placeholder="Enter Image ID" name="picid" disabled="true" required>
+
+  	<div id="galupd" class="inner-wrap">
+    <img id="galler" src="image.png" style="height:150px;width:250px;" alt="Choose your photo" /> <br>
+    <progress value="0" max="100" id="uploader2">0%</progress>
+    <input type="file" value="upload2" accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps" id="fileButton2">
+    <input type="text" name="updgal" id="updgal" value="" style="display: none;">
+    </div>
+
+
+<!--
+        <label for="pic"><strong>Image URL</strong></label>
+        <input type="URL" placeholder="Enter Image URL here" id="pic" name="pic" onchange="chngURL()" required>
+        <img src="image.png" id="imgshow" width="auto" height="200px"><br><br>
+-->
+        <br>
+        <label for="uname"><strong>Image Caption</strong></label>
+        <input type="text" id="icap" placeholder="Enter Image Caption" name="icap">
+
+      </div>
+  	</div>
+      <button type="submit">Add Picture to Gallery</button>
+
+
+	
+
+
+      <div class="container" style="background-color: #9b91e3; padding: 45px;">
+        <span class="pww">All rights reserved &copy; <a href="#">Bikash Das</a> &nbsp; </span>
+        <span class="psw">Powered by <a href="http://quantumwebgarden.in" target="_blank">Quantum Webgarden</a></span>
+      </div>
+    </form>
+
+	<div class="button" id="thankgal" style="display:none;font-size:25px">
+      <br><br>
+      <p><strong>Image have successfully uploaded to gallery.</strong></p><br>
+      <button type="" onclick="anothergal()">Add another Picture to Gallery</button><br>
+      <button type="" onclick="viewgal()">View Gallery</button>
+	</div>
+
+    <script src="admin.js"></script>
+    
+<!--
+    <script type="text/javascript">
+    	
+	function chngcover() {
+  var str = document.getElementById("acv").value; 
+  var res = str.replace("file/d/", "uc?export=view&id=");
+  var res = res.replace("/view?usp=sharing", "");
+  document.getElementById("acv").value = res;
+  document.getElementById("imgacv").src = res;
+  }
+  	function chngURL() {
+  var str = document.getElementById("pic").value; 
+  var res = str.replace("file/d/", "uc?export=view&id=");
+  var res = res.replace("/view?usp=sharing", "");
+  document.getElementById("pic").value = res;
+  document.getElementById("imgshow").src = res;
+}
+
+    </script>
+-->
+  </body>
+</html>
