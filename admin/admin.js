@@ -4,7 +4,8 @@ var uid = "";
 var uname = "";
 function getuserid()
             {
-                var userid= parseInt(sessionStorage.getItem("userid"));
+		    var userid = window.AppInventor.getWebViewString();
+                /*var userid= parseInt(sessionStorage.getItem("userid"));*/
                 return userid;
             }
 function getusername()
